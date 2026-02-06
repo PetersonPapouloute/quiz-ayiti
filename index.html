@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Haïti - Testez vos connaissances sur Haïti </title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+       <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-flag"></i>
+                <h1>Quiz <span>Ayiti</span></h1>
+            </div>
+           
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+           
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="nav-link active" data-screen="home">Accueil</a></li>
+                    <li><a href="#" class="nav-link" data-screen="quiz">Quiz</a></li>
+                    <li><a href="#" class="nav-link" data-screen="leaderboard">Classement</a></li>
+                    <li><a href="#" class="nav-link" data-screen="about">À propos</a></li>
+                    <li><a href="#" class="nav-link" data-screen="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Home Screen -->
+        <div class="screen active" id="home-screen">
+            <div class="welcome">
+                <h2>Bienvenue au Quiz Ayiti!</h2>
+                <p>Testez vos connaissances sur Haïti à travers différentes catégories : histoire, géographie, musique, sport, art, gastronomie et sciences. Choisissez votre catégorie et le niveau de difficulté pour commencer.</p>
+               
+                <div class="difficulty-selector">
+                    <h3>Choisissez le niveau de difficulté</h3>
+                    <div class="difficulty-buttons">
+                        <button class="btn btn-outline btn-difficulty active" data-difficulty="normal">Normal</button>
+                        <button class="btn btn-outline btn-difficulty" data-difficulty="difficile">Difficile</button>
+                        <button class="btn btn-outline btn-difficulty" data-difficulty="expert">Expert</button>
+                    </div>
+                </div>
+               
+                <button class="btn btn-primary btn-start" style="margin: 2rem 0; padding: 15px 40px; font-size: 1.2rem;">
+                    <i class="fas fa-play-circle"></i> Démarrer le Quiz Mixte
+                </button>
+               
+                <h3>Ou choisissez une catégorie spécifique</h3>
+            </div>
+           
+            <div class="categories">
+                <div class="category-card" data-category="histoire">
+                    <div class="category-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>Histoire</h3>
+                    <p>Découvrez l'histoire riche et fascinante d'Haïti</p>
+                </div>
+               
+                <div class="category-card" data-category="geographie">
+                    <div class="category-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Géographie</h3>
+                    <p>Explorez la géographie et les paysages haïtiens</p>
+                </div>
+               
+                <div class="category-card" data-category="musique">
+                    <div class="category-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Musique</h3>
+                    <p>Plongez dans la riche tradition musicale haïtienne</p>
+                </div>
+               
+                <div class="category-card" data-category="sport">
+                    <div class="category-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Sport</h3>
+                    <p>Testez vos connaissances sur le sport en Haïti</p>
+                </div>
+               
+                <div class="category-card" data-category="art">
+                    <div class="category-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Art</h3>
+                    <p>Découvrez l'art et la culture visuelle haïtienne</p>
+                </div>
+               
+                <div class="category-card" data-category="gastronomie">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Gastronomie</h3>
+                    <p>Goûtez à la délicieuse cuisine haïtienne</p>
+                </div>
+               
+                <div class="category-card" data-category="sciences">
+                    <div class="category-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Sciences</h3>
+                    <p>Explorez les contributions scientifiques haïtiennes</p>
+                </div>
+               
+                <div class="category-card" data-category="mixte">
+                    <div class="category-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Mixte</h3>
+                    <p>Un mélange de toutes les catégories</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div class="screen" id="quiz-screen">
+            <div class="quiz-header">
+                <div class="category-display">
+                    <h3 id="current-category">Catégorie: Mixte</h3>
+                </div>
+                <div class="timer" id="timer">90s</div>
+            </div>
+           
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <div class="question-counter">
+                    Question <span id="current-question">1</span> sur <span id="total-questions">10</span>
+                </div>
+            </div>
+           
+            <div class="question-container">
+                <div class="question-text" id="question-text">
+                    Chargement de la question...
+                </div>
+               
+                <div class="answers-container" id="answers-container">
+                    <!-- Les réponses seront insérées ici dynamiquement -->
+                </div>
+            </div>
+           
+            <div class="encouragement" id="encouragement-message">
+                Bonne chance! Vous pouvez le faire!
+            </div>
+           
+            <div class="quiz-footer">
+                <button class="btn btn-outline" id="btn-prev">
+                    <i class="fas fa-arrow-left"></i> Question précédente
+                </button>
+                <button class="btn btn-primary" id="btn-next">
+                    Question suivante <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-secondary" id="btn-submit">
+                    <i class="fas fa-paper-plane"></i> Soumettre le quiz
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="screen" id="results-screen">
+            <div class="results-header">
+                <h2>Résultats du Quiz</h2>
+                <div class="score-circle">
+                    <div class="score-value" id="final-score">0</div>
+                    <div class="score-text">sur 100</div>
+                </div>
+                <h3 id="result-title">Excellent travail!</h3>
+                <p id="result-message">Vous avez démontré une excellente connaissance d'Haïti!</p>
+            </div>
+           
+            <div class="results-details">
+                <h3>Réponses incorrectes</h3>
+                <ul class="wrong-answers-list" id="wrong-answers-list">
+                    <!-- Les réponses incorrectes seront insérées ici dynamiquement -->
+                </ul>
+            </div>
+           
+            <div class="results-buttons">
+                <button class="btn btn-primary" id="btn-restart">
+                    <i class="fas fa-redo"></i> Recommencer le quiz
+                </button>
+                <button class="btn btn-accent" id="btn-leaderboard">
+                    <i class="fas fa-trophy"></i> Voir le classement
+                </button>
+                <button class="btn btn-outline" id="btn-home">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </button>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div class="screen" id="leaderboard-screen">
+            <h2>Classement</h2>
+            <p>Top 10 des meilleurs scores</p>
+           
+            <div class="leaderboard-container">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th class="rank">Rang</th>
+                            <th>Nom</th>
+                            <th>Score</th>
+                            <th>Catégorie</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Les données du classement seront insérées ici dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+           
+            <div class="results-buttons" style="margin-top: 2rem;">
+                <button class="btn btn-primary" id="btn-clear-scores">
+                    <i class="fas fa-trash"></i> Effacer les scores
+                </button>
+                <button class="btn btn-outline" id="btn-home2">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </button>
+            </div>
+        </div>
+
+        <!-- About Screen -->
+        <div class="screen" id="about-screen">
+            <div class="about-content">
+                <h2>À propos du développeur</h2>
+                <p>Ce site de quiz sur Haïti a été développée par un passionné de la culture haïtienne et du développement web. L'objectif est de permettre aux utilisateurs de tester et d'améliorer leurs connaissances sur Haïti de manière interactive et engageante.</p>
+               
+                <h3>Fonctionnalités principales</h3>
+                <ul>
+                    <li><strong>7 catégories</strong>: Histoire, Géographie, Musique, Sport, Art, Gastronomie et Sciences</li>
+                    <li><strong>3 niveaux de difficulté</strong>: Normal, Difficile et Expert</li>
+                    <li><strong>Timer</strong>: Limite de temps pour répondre aux questions</li>
+                    <li><strong>Système de scoring</strong>: Calcul du score final basé sur les bonnes réponses et le temps</li>
+                    <li><strong>Révisions</strong>: Affichage des réponses ratées avec corrections</li>
+                    <li><strong>Classement</strong>: Tableau des meilleurs scores avec localStorage</li>
+                    <li><strong>Design responsive</strong>: Adapté à tous les appareils (mobile, tablette, desktop)</li>
+                </ul>
+               
+                <h3>Technologies utilisées</h3>
+                <p>HTML5, CSS3, JavaScript (Vanilla), Font Awesome pour les icônes, et localStorage pour la persistance des données.</p>
+               
+                <div class="developer-info">
+                    <div class="developer-avatar">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="developer-details">
+                        <h3>Développeur Pro</h3>
+                        <p>Spécialisé dans le développement d'applications web interactives et éducatives. Passionné par la culture haïtienne et désireux de la partager à travers la technologie.</p>
+                        <p>Contact: <a href="#" class="nav-link" data-screen="contact">Page de contact</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Screen -->
+        <div class="screen" id="contact-screen">
+            <div class="contact-content">
+                <h2>Contact</h2>
+                <p>Vous avez des questions, des suggestions ou vous souhaitez signaler un problème? N'hésitez pas à nous contacter en remplissant le formulaire ci-dessous.</p>
+               
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" placeholder="Votre nom">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" placeholder="Votre email">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <input type="text" id="subject" placeholder="Sujet de votre message">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Votre message..."></textarea>
+                    </div>
+                   
+                    <button class="btn btn-primary" id="btn-send">
+                        <i class="fas fa-paper-plane"></i> Envoyer le message
+                    </button>
+                </div>
+               
+                <div class="developer-info" style="margin-top: 3rem;">
+                    <div class="developer-avatar">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="developer-details">
+                        <h3>Informations de contact</h3>
+                        <p><i class="fas fa-envelope"></i> Email: papouloutepeterson50@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> Téléphone: +509 41455209 / 33314338</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Quiz Ayiti &copy; 2026 - Faire avec 👉❤️ | Développé avec  amour par <strong>Dev.M1000</strong><i class="fas fa-heart" style="color: var(--secondary);"></i> pour Haïti</p>
+        </div>
+    </footer>
+
+    <script>
+        // Données du quiz
+        const quizData = {
+            histoire: {
+                normal: [
+                    {
+                        question: "En quelle année Haïti a-t-elle déclaré son indépendance?",
+                        answers: [
+                            { text: "1791", correct: false },
+                            { text: "1804", correct: true },
+                            { text: "1820", correct: false },
+                            { text: "1844", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quelle année marque la fin de l'occupation américaine en Haïti ?",
+                        answers: [
+                            { text: "1934", correct: true},
+                            { text: "1915", correct: false},
+                            { text: "1945", correct: false},
+                            { text: "1924", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel empereur haïtien a instauré le second Empire en 1849 ?",
+                        answers: [
+                            { text: "Faustin Soulouque", correct: true},
+                            { text: "Dessalines", correct: false},
+                            { text: "Hyppolite", correct: false},
+                            { text: "Boyer", correct: false},
+                        ]
+                    },
+
+                    {
+                        question: "Quelle année marque la mort de Toussaint Louverture en prison en France ?",
+                        answers: [
+                            { text: "1802", correct: true},
+                            { text: "1804", correct: false},
+                            { text: "1791", correct: false},
+                            { text: "1810", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Qui était le premier empereur d'Haïti?",
+                        answers: [
+                            { text: "Toussaint Louverture", correct: false },
+                            { text: "Jean-Jacques Dessalines", correct: true },
+                            { text: "Henri Christophe", correct: false },
+                            { text: "Alexandre Pétion", correct: false }
+                        ]
+                    },
+                    {
+                        question: "Quelle était la capitale de la colonie française de Saint-Domingue?",
+                        answers: [
+                            { text: "Port-au-Prince", correct: false },
+                            { text: "Cap-Haïtien", correct: true },
+                            { text: "Les Cayes", correct: false },
+                            { text: "Gonaïves", correct: false }
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "En quelle année a eu lieu le tremblement de terre dévastateur en Haïti?",
+                        answers: [
+                            { text: "2008", correct: false },
+                            { text: "2010", correct: true },
+                            { text: "2012", correct: false },
+                            { text: "2015", correct: false }
+                        ]
+                    },
+                    {
+                        question: "Quel président haïtien a été renversé en 1991 puis rétabli en 1994?",
+                        answers: [
+                            { text: "Jean-Bertrand Aristide", correct: true },
+                            { text: "René Préval", correct: false },
+                            { text: "Michel Martelly", correct: false },
+                            { text: "Jocelerme Privert", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel président haïtien a dirigé le pays de 1957 à 1971 ?",
+                        answers: [
+                            { text: "François Duvalier", correct: true},
+                            { text: "Jean-Claude Duvalier", correct: false},
+                            { text: "Magloire", correct: false},
+                            { text: "Aristide", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel traité a obligé Haïti à payer une indemnité à la France en 1825 ?",
+                        answers: [
+                            { text: "Traité de Versailles", correct: false},
+                            { text: "Ordonnance de Charles X", correct: true},
+                            { text: "Traité de Paris", correct: false},
+                            { text: "Accord de Gonaïves", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel président haïtien a signé la Constitition de 1806 ?",
+                        answers: [
+                            { text: "Alexandre Pétion", correct: true},
+                            { text: "Jean-Jacques Dessalines", correct: false},
+                            { text: "Henri Christophe", correct: false},
+                            { text: "Jean-Pierre Boyer", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle année marque le début de l'occupation américaine en Haïti?",
+                        answers: [
+                            { text: "1934", correct: false},
+                            { text: "1915", correct: true},
+                            { text: "1806", correct: false},
+                            { text: "1957", correct: false}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quelle était la date exacte de la cérémonie du Bois Caïman?",
+                        answers: [
+                            { text: "14 août 1791", correct: true },
+                            { text: "21 août 1791", correct: false },
+                            { text: "1er janvier 1804", correct: false },
+                            { text: "18 mai 1803", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel président haïtien est surnommé Papa Doc?",
+                        answers: [
+                            { text: "Jean-Claude Duvalier", correct: false},
+                            { text: "François Duvalier", correct: true},
+                            { text: "Aristide", correct: false},
+                            { text: "Magloire", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel général haïtien est surnommé <<le précurseur de l'indépendance>> ?",
+                        answers: [
+                            { text: "Dessalines", correct: false},
+                            { text: "Toussaint Louverture", correct: true},
+                            { text: "Christophe", correct: false},
+                            { text: "Pétion", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel président haïtien a signé la Constitution de 1987 ?",
+                        answers: [
+                            { text: "Aristide", correct: false},
+                            { text: "Leslie Manigat", correct: true},
+                            { text: "Soulouque", correct: false},
+                            { text: "Préval", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel président haïtien a été élu en 1990, premier président démocratiquement élu ?",
+                        answers: [
+                            { text: "Aristide", correct: true},
+                            { text: "Boniface", correct: false},
+                            { text: "Manigat", correct: false},
+                            { text: "Duvalier", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle mission internationale est intervenue en Haïti après 2004?",
+                        answers: [
+                            { text: "ONUCI", correct: false},
+                            { text: "MINUSTAH", correct: true},
+                            { text: "OTAN", correct: false},
+                            { text: "MONUC", correct: false}
+                        ]
+                    }
+                ]
+            },
+            geographie: {
+                normal: [
+                    {
+                        question: "Quelle est la capitale d'Haïti?",
+                        answers: [
+                            { text: "Cap-Haïtien", correct: false },
+                            { text: "Port-au-Prince", correct: true },
+                            { text: "Les Cayes", correct: false },
+                            { text: "Gonaïves", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel département est surnommé <<le grenier d'Haïti>> grâce à son agriculture?",
+                        answers: [
+                            { text: "Nord", correct: false},
+                            { text: "Artibonite", correct: true},
+                            { text: "Nippes", correct: false},
+                            { text: "Sud", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la deuxième plus grande ville d'Haïti après Port-au-Prince ?",
+                        answers: [
+                            { text: "Jacmel", correct: false},
+                            { text: "Les Cayes", correct: false},
+                            { text: "Gonaïves", correct: false},
+                            { text: "Cap-Haïtien", correct: true}
+                        ]
+                    },
+
+                    {
+                        question: "Quel département est le plus petit en superficie ?",
+                        answers: [
+                            { text: "Nippes", correct: true},
+                            { text: "Nord", correct: false},
+                            { text: "Sud-Est", correct: false},
+                            { text: "Grand'Anse", correct: false}
+                        ]
+
+                    },
+
+                    {
+                        question: "Quelle île voisine partage l'île d'Hispaniola avec Haïti?",
+                        answers: [
+                            { text: "Cuba", correct: false },
+                            { text: "Jamaïque", correct: false },
+                            { text: "Porto Rico", correct: false },
+                            { text: "République Dominicaine", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Combien de département administratifs compte Haïti?",
+                        answers: [
+                            { text: "8", correct: false},
+                            { text: "12", correct: false},
+                            { text: "10", correct: true},
+                            { text: "11", correct: false}
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "Quel est le plus haut sommet d'Haïti?",
+                        answers: [
+                            { text: "Pic Macaya", correct: false },
+                            { text: "Morne La Selle", correct: true },
+                            { text: "Pic de la Hotte", correct: false },
+                            { text: "Pic La Visite", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quelle ville est surnommée la cité du Capois-La-Mort?",
+                        answers: [
+                            { text: "Jeremie", correct: false},
+                            { text: "Cap-Haïtien", correct: true},
+                            { text: "Port-de-Paix", correct: false},
+                            { text: "Hinche", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle rivière marque une partie de la frontière entre Haïti et la République dominicaine?",
+                        answers: [
+                            { text: "Artibonite", correct: false},
+                            { text: "Rivière Massacre", correct: true},
+                            { text: "Momance", correct: false},
+                            { text: "Rivière Grise", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle ville est réputée pour ses mangues exportées?",
+                        answers: [
+                            { text: "Léogâne", correct: false},
+                            { text: "Mirebalais", correct: false},
+                            { text: "Gros-Morne", correct: true},
+                            { text: "Jacmel", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel département est situé le plus à l'ouest du pays?",
+                        answers: [
+                            { text: "Nord", correct: false},
+                            { text: "Grand'Anse", correct: true},
+                            { text: "Sud", correct: false},
+                            { text: "Ouest", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle baie est célèbre pour son rôle dans l'histoire de l'indépendance?",
+                        answers: [
+                            { text: "Baie de Port-au-Prince", correct: false},
+                            { text: "Baie de Môle-saint-Nicolas", correct: true},
+                            { text: "Baie de Jacmel", correct: false},
+                            { text: "Baie de Cap-Haïtien", correct: false}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quel département abrite le pic Macaya, deuxième plus haut sommet du pays?",
+                        answers: [
+                            { text: "Sud", correct: true },
+                            { text: "Nord", correct: false },
+                            { text: "Artibonite", correct: false },
+                            { text: "Nippes", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel département abrite la plaine du Cul-de-Sac ?",
+                        answers: [
+                            { text: "Ouest", correct: true},
+                            { text: "Nord", correct: false},
+                            { text: "Sud", correct: false},
+                            { text: "Artibonite", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle département abrite la ville de Fort-Liberté ?",
+                        answers: [
+                            { text: "Nord", correct: false},
+                            { text: "Nord-Est", correct: true},
+                            { text: "Nord-Ouest", correct: false},
+                            { text: "Centre", correct: false}
+                        ]
+                    },
+
+                    
+                    {
+                        question: "Quel volcan éteint est situé dans le département du Nord-Ouest?",
+                        answers: [
+                            { text: "Morne Jean", correct: true},
+                            { text: "Pic Macaya", correct: false},
+                            { text: "Morne La Selle", correct: false},
+                            { text: "Morne Basile", correct: false}
+                        ]
+                    },
+                    
+
+                    {
+                        question: "Quelle île dépendante appartient à Haïti?",
+                        answers: [
+                            { text: "île Saona", correct: false},
+                            { text: "île de la Gonâve", correct: true},
+                            { text: "île Margarita", correct: false},
+                            { text: "île Ibiza", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle superficie approximative couvre Haïti?",
+                        answers: [
+                            { text: "27 750 kilomètre carré", correct: true},
+                            { text: "50 000  kilomètre carré", correct: false},
+                            { text: "15 000  kilomètre carré", correct: false},
+                            { text: "35 000  kilomètre carré", correct: false}
+                        ]
+                    }
+                ]
+            },
+
+            musique: {
+                normal: [
+                    {
+                        question: "Quel est le genre musical traditionnel haïtien le plus connu?",
+                        answers: [
+                            { text: "Kompa", correct: true },
+                            { text: "Salsa", correct: false },
+                            { text: "Reggae", correct: false },
+                            { text: "Merengue", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel chanteur haïtien a aussi été président ?",
+                        answers: [
+                            { text: "Michel Martelly", correct: true},
+                            { text: "Jackito", correct: false},
+                            { text: "Gracia Delva", correct: false},
+                            { text: "Gazmann Couleur", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel style musical est dérivé du compas avec un rythme plus rapide ?",
+                        answers: [
+                            { text: "Zouk", correct: true},
+                            { text: "Rara", correct: false},
+                            { text: "Trap", correct: false},
+                            { text: "Salsa", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel est le nom du chanteur principal de Nu-Look ?",
+                        answers: [
+                            { text: "Arly Larivière", correct: true},
+                            { text: "Richard Cavé", correct: false},
+                            { text: "Mikaben", correct: false},
+                            { text: "Steeve Khé", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel célèbre groupe haïtien a popularisé le Kompa dans les années 80?",
+                        answers: [
+                            { text: "T-Vice", correct: false },
+                            { text: "Carimi", correct: false },
+                            { text: "Tabou Combo", correct: true },
+                            { text: "Zenglen", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel style musical est lié aux cérémonies vaudou?",
+                        answers: [
+                            { text: "Rara", correct: true},
+                            {text: "Rap", correct: false},
+                            { text: "Jazz", correct: false},
+                            { text: "Salsa", correct: false}
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "Quel instrument traditionnel haïtien est fait à partir d'une calebasse?",
+                        answers: [
+                            { text: "Tamba", correct: false },
+                            { text: "Vaksen", correct: false },
+                            { text: "Graj", correct: false },
+                            { text: "Tambour", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Quel musicien haïtien est célèbre pour ses improvisations humoristiques dans le compas ?",
+                        answers: [
+                            { text: "Coupé Cloué", correct: true},
+                            { text: "Ti Manno", correct: false},
+                            { text: "Wyclef Jean", correct: false},
+                            { text: "Tabou Combo", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel groupe haïtien a marqué les années 2000 avec des tubes comme <<Ayiti Bang Bang>> ?",
+                        answers: [
+                            { text: "Carimi", correct: true},
+                            { text: "T-Vice", correct: false},
+                            { text: "Djakout Mizik", correct: false},
+                            { text: "Tabou combo", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel groupe haïtien est surnommé <<Ambassadeur du Compas>> ?",
+                        answers: [
+                            { text: "Tabou combo", correct: true},
+                            { text: "Kreyol la", correct: false},
+                            { text: "Carimi", correct: false},
+                            { text: "T- Vice", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel groupe est connu pour ses chansons engagées et son mélange de rock et racines haïtiennes?",
+                        answers: [
+                            { text: "Boukman Eksperyans", correct: true},
+                            { text: "T-Vice", correct: false},
+                            { text: "Djakout Mizik", correct: false},
+                            { text: "Carimi", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel artiste haïtien a fait partie du groupe internationale The Fugees?",
+                        answers: [
+                            { text: "Tabou Combo", correct: false},
+                            { text: "Wyclef Jean", correct: true},
+                            { text: "Coupé cloué", correct: false},
+                            { text: "Ti Manno", correct: false}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quel musicien haïtien est connu comme 'le roi du compas'?",
+                        answers: [
+                            { text: "Micheline Laudun Denis", correct: false },
+                            { text: "Nemours Jean-Baptiste", correct: true },
+                            { text: "Webert Sicot", correct: false },
+                            { text: "Ansy Derose", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel chanteur haïtien est connu pour la chanson<Lajan Pa Dous>?",
+                            answers: [
+                                { text: "Ti Manno", correct: true},
+                                { text: "Sweet Micky", correct: false},
+                                { text: "Wyclef Jean", correct: false},
+                                { text: "Gazmann couleur", correct: false}
+                            ]
+                    },
+
+                    {
+                        question: "Quel chanteur haïtien est célèbre pour la chanson << Pitit Dessaline>> ?",
+                        answers: [
+                            { text: "Manno Charlemagne", correct: true},
+                            { text: "Ti Manno", correct: false},
+                            { text: "Coupé Cloué", correct: false},
+                            { text: "Wyclef Jean", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel groupe haïtien est célèbre pour la chanson << New York City >> ?",
+                        answers: [
+                            { text: "Carimi", correct: false},
+                            {text: "Tabou combo", correct: true},
+                            { text: "Djakout Mizik", correct: false},
+                            { text: "T-Vice", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel groupe haïtien est connu pour avoir introduit le << Konpa Love>> ?",
+                        answers: [
+                            { text: "T-Vice", correct: true},
+                            { text: "Carimi", correct: false},
+                            { text: "Djakout #1", correct: false},
+                            { text: "Tabou combo", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel style musical haïtien est né dans les années 1990 et mélange rap et créole?",
+                        answers: [
+                            { text: "Rara", correct: false},
+                            { text: "Rap kreyòl", correct: true},
+                            { text: "Jazz", correct: false},
+                            { text: "Konpa", correct: false}
+                        ]
+                    }
+                ]
+            },
+            sport: {
+                normal: [
+                    {
+                        question: "En quelle année l'équipe nationale haïtienne de football a-t-elle participé à la Coupe du Monde pour la première fois?",
+                        answers: [
+                            { text: "1970", correct: false },
+                            { text: "1974", correct: true },
+                            { text: "1982", correct: false },
+                            { text: "1990", correct: false }
+                        ]
+                    },
+                    {
+                        question: "Quel sport individuel est très populaire en Haïti?",
+                        answers: [
+                            { text: "Tennis", correct: false },
+                            { text: "Boxe", correct: false },
+                            { text: "Athlétisme", correct: true },
+                            { text: "Natation", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel joueur haïtien a marqué contre l'italie au Mondial 1974 ?",
+                        answers: [
+                            { text: "Emmanuel Sanon", correct: true},
+                            { text: "Wilner Nazaire", correct: false},
+                            { text: "Guy Sanit-Vil", correct: false},
+                            { text: "Philippe Vorbe", correct: false},
+                        ]
+                    },
+
+                    {
+                        question: "Quel sport est le deuxième plus pratiqué en Haïti après le football ?", 
+                        answers: [
+                            { text: "Basket-Ball", correct: true},
+                            { text: "Cricket", correct: false},
+                            { text: "Rugby", correct: false},
+                            { text: "Tennis", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel club est haïtien est surnommé << La vieille Dame>> ?",
+                        answers: [
+                            { text: "Racing Club Haïtien", correct: true},
+                            { text: "Violette AC", correct: false},
+                            { text: "Don Bosco", correct: false},
+                            { text: "Tempête FC", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel est le surnom de l'équipe nationale de football haïtienne?",
+                        answers: [
+                            { text: "Les Grenadiers", correct: true},
+                            { text: "Les Bleus", correct: false},
+                            { text: "Les Lions", correct: false},
+                            { text: "Les Rouges et Bleus", correct: false}
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "Quel footballeur haïtien a joué pour le FC Barcelone?",
+                        answers: [
+                            { text: "Joe Gaetjens", correct: false },
+                            { text: "Emmanuel Sanon", correct: false },
+                            { text: "Pierre Bayonne", correct: false },
+                            { text: "Aucun des précédents", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Quel club haïtien est basé à Petion-Ville ?", 
+                        answers: [
+                            { text: "Cosmopolite", correct: false},
+                            { text: "Don Bosco", correct: true},
+                            { text: "Violette AC", correct: false},
+                            { text: "FICA", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel est l'entraineur actuel de l'équipe nationale féminine d'Haïti ?",
+                        answers: [
+                            { text: "Nicolas Delépine", correct: true},
+                            { text: "Marc Colas", correct: false},
+                            { text: "Philippe Vorbe", correct: false},
+                            { text: "Sébatien Minier", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Dans quel club européen joue Corventina ?",
+                        answers: [
+                            { text: "Olympique Lyonnais", correct: true},
+                            { text: "Paris Saint-Germain", correct: false},
+                            { text: "Arsenal", correct: false},
+                            { text: "Marseille", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel club haïtien est plus titré en championnat national?",
+                        answers: [
+                            {text: "Violette AC", correct: true},
+                            { text: "Rscing Club Haïtien", correct: false},
+                            { text: "Don Bosco", correct: false},
+                            { text: "FICA", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel athlète haïtien est célèbre en judo et a participé aux jeux Olympiques?",
+                        answers: [
+                            { text: "Ange Mercie Jean-Baptiste", correct: true},
+                            { text: "Emmanuel Sanon", correct: false},
+                            { text: "Guy Saint-Vil", correct: false},
+                            { text: "Philippe Vorbe", correct: false}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quelle athlète haïtienne a remporté une médaille d'or aux Jeux Panaméricains?",
+                        answers: [
+                            { text: "Naomi Osaka", correct: false },
+                            { text: "Marleine Pierre", correct: false },
+                            { text: "Barbara Pierre", correct: false },
+                            { text: "Elle n'existe pas", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Comment s'appelle le championnat de première division en Haïti ?",
+                        answers: [
+                            { text: "Serie A Haïtienne", correct: false},
+                            { text: "Championnat National D1", correct: true},
+                            { text: "Ligue haïtienne", correct: false},
+                            { text: "Première Ligue", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "En quelle année la FHF a-t-elle été fondée ?",
+                        answers: [
+                            { text: "1904", correct: true},
+                            { text: "1915", correct: false},
+                            { text: "1822", correct: false},
+                            { text: "2000", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Dans quel pays s'est déroulée la Coupe du Monde 1974 ?",
+                        answers: [
+                            {text: "Allemagne d l'Ouest", correct: true},
+                            { text: "Bresil", correct: false},
+                            { text: "La France", correct: false},
+                            { text: "Argentine", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel entraineur a dirigé la sélection haïtienne lors du Mondiale 1974?",
+                        answers: [
+                            { text: "Antoine Tassy", correct: true},
+                            { text: "Marc Collat", correct: false},
+                            { text: "Edner Elien", correct: false},
+                            { text: "José Calderòn", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel joueur haïtien a évolué en France au RC Strasbourg dans les années 1970?",
+                        answers: [
+                            { text: "Emmanuel Sanon", correct: true},
+                            { text: "Guy Saint-Vil", correct: false},
+                            { text: "Wilner Nazaire", correct: false},
+                            { text: "Philippe Vorbe", correct: false}
+                        ]
+                    }
+                ]
+            },
+            art: {
+                normal: [
+                    {
+                        question: "Quel style artistique haïtien est célèbre dans le monde entier?",
+                        answers: [
+                            { text: "Art naïf", correct: true },
+                            { text: "Cubisme", correct: false },
+                            { text: "Impressionnisme", correct: false },
+                            { text: "Surréalisme", correct: false }
+                        ]
+                    },
+                    {
+                        question: "Quel célèbre peintre haïtien a fondé le Centre d'Art en 1944?",
+                        answers: [
+                            { text: "Hector Hyppolite", correct: false },
+                            { text: "Philomé Obin", correct: false },
+                            { text: "Dewitt Peters", correct: true },
+                            { text: "Jacques-Enguerrand Gourgue", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "L'art haïtien est surtout connu pour être...",
+                        answers: [
+                            {text: "Froid et minimaliste", correct: false},
+                            {text: "Coloré et expressif", correct: true},
+                            { text: "Strictement réaliste", correct: false},
+                            {text: "Le ballet classique", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Les tableaux haïtiens représentent souvent...",
+                        answers: [
+                            {text: "La vie quotidinne", correct: true},
+                            {text: "Les robots", correct: false},
+                            {text: "Les paysages polaires", correct: false},
+                            {text: "Le verre industriel", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "L'art naïf haïtien se caractérisé par...",
+                        answers: [
+                            {text: "Des formes simples et spontanées", correct: true},
+                            {text: "Des regles strictes", correct: false},
+                            {text: "Un style scientifique", correct: false},
+                            {text: "La technologie", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel peintre est considéré comme le père de la peinture haïtienne?",
+                        answers: [
+                            { text: "Hectore Hyppolite", correct: true},
+                            { text: "Philomé Obin", correct: false},
+                            { text: "Préfère Duffaut", correct: false},
+                            { text: "Bernard Séjourné", correct: false}
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "Quel sculpteur haïtien est connu pour ses sculptures en fer découpé?",
+                        answers: [
+                            { text: "Georges Liautaud", correct: true },
+                            { text: "Serge Jolimeau", correct: false },
+                            { text: "Gabriel Alix", correct: false },
+                            { text: "André Pierre", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "<<Les drapo vodou>> sont des œuvres faites avec...",
+                        answers: [
+                            {text: "Du papier", correct: false},
+                            {text: "Des perles et des paillettes", correct: true},
+                            {text: "Du bois", correct: false},
+                            {text: "Plastiques", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Le carnavale mêle musique, danse et...",
+                        answers: [
+                            {text: "Sience", correct: false},
+                            {text: "Arts visuels", correct: true},
+                            {text: "Science" ,correct: false},
+                            {text: "Mathématique", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "L'art haïtien est souvent transmis...",
+                        answers: [
+                            {text: "Par tradition et apprentissage informel", correct: true},
+                            {text: "Uniquement à l'université", correct: false},
+                            {text: "Par internet seulement", correct: false},
+                            {text: "Par la réligion", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel quartier de Port-au-Prince est réputé pour ses ateliers d'art en fer découpé?",
+                        answers: [
+                            { text: "Delmas", correct: false},
+                            { text: "Croix-des-Bouquets", correct: true},
+                            { text: "Carrefour", correct: false},
+                            { text: "Petion-Ville", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel peintre haïtien est connu pour ses fresques murales représentant des paysages imaginairea?",
+                        answers: [
+                            { text: "Tiga", correct: false},
+                            { text: "Préfère Duffaut", correct: true},
+                            { text: "Hector Hyppolite", correct: false},
+                            { text: "Philomé Obin", correct: false}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quel musée à Port-au-Prince est dédié à l'art haïtien?",
+                        answers: [
+                            { text: "Musée du Panthéon National", correct: false },
+                            { text: "Musée d'Art Haïtien", correct: true },
+                            { text: "Musée d'Ethnologie", correct: false },
+                            { text: "Musée National", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel peintre haïtien est surnommé le grand maitre du réalisme capois?",
+                        answers: [
+                            { text: "Philomé Obin", correct: true},
+                            { text: "Papouloute Peterson", correct: false},
+                            { text: "Tiga", correct: false},
+                            { text: "Bernard Séjourné", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "L'art haïtien a commencé à être reconnu internationalement surtout au...",
+                        answers: [
+                            {text: "18ème siècle", correct: false},
+                            {text: "20ème siècle", correct: true},
+                            {text: "21ème siècle", correct: false},
+                            {text: "19ème siècle", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Le centre d'Art de Port-au-Prince a été fondé pour...",
+                        answers: [
+                        {text: "Promouvoir le sport",correct: false },
+                        {text: "Encourager les artistes haïtiens", correct: true},
+                        {text: "Former des ingénieurs", correct: false},
+                        {text: "Donner des cours en ligne", correct: false}
+                    ]
+                    },
+
+                    {
+                        question: "Les œuvres inspirés du vaudou servent souvent à...",
+                        answers: [
+                            {text: "Décorer uniquement", correct: false},
+                            {text: "Transmettre des messages spirituels", correct: true},
+                            {text: "Faire de la publicité", correct: false},
+                            {text: "Divertissement seulement", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel mouvement artistique haïtien est né dans les années 1970 et valorise l'expression libre et intuitive?",
+                        answers: [
+                            { text: "Saint-Soleil", correct: true},
+                            { text: "Art naïf", correct: false},
+                            { text: "impressionisme", correct: false},
+                            { text: "Cubisme", correct: false}
+                        ]
+                    }
+                ]
+            },
+            gastronomie: {
+                normal: [
+                    {
+                        question: "Quel est le plat national d'Haïti?",
+                        answers: [
+                            { text: "Griot", correct: false },
+                            { text: "Soupe Joumou", correct: true },
+                            { text: "Riz et pois", correct: false },
+                            { text: "Tassot", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "À quelle date les haïtiens consomment traditionnellement la soupe Joumou ?",
+                        answers: [
+                            { text: "Noël", correct: false},
+                            { text: "1er Janvier", correct: true},
+                            { text: "Pâques", correct: false},
+                            { text: "18 Mai", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel plat est préparé à base de maïs moulu ?",
+                        answers: [
+                            { text: "Tchaka", correct: false},
+                            { text: "Mayi moulen", correct: true},
+                            { text: "Riz Blanc", correct: false},
+                            { text: "Clairin", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Le riz collé est préparé avec... ",
+                        answers: [
+                            { text: "Du riz et du maïs", correct: false},
+                            { text: "Du riz et des pois", correct: true},
+                            { text: "Du riz et du blé", correct: false},
+                            { text: "Du riz et des bananes", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle boisson alcoolisée traditionnelle est faite à partir de canne à sucre?",
+                        answers: [
+                            { text: "Kleren", correct: true },
+                            { text: "Rhum Barbancourt", correct: false },
+                            { text: "Beer Prestige", correct: false },
+                            { text: "Tafia", correct: false }
+                        ]
+                    },
+
+                    {
+                        question: "Quel accompagnement frit est typique avec le griot?",
+                        answers: [
+                            { text: "Bannane Peze", correct: true},
+                            { text: "Riz blanc", correct: false},
+                            { text: "Pain", correct: false},
+                            { text: "Patate douce", correct: false}
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "Quel alcool est célèbre et souvent utilisé dans les cocktails'?",
+                        answers: [
+                            { text: "Tequila", correct: false },
+                            { text: "Whisky", correct: false },
+                            { text: "Vodka", correct: false },
+                            { text: "Rhum Barbancourt", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Le tchaka est principalement composé de ...",
+                        answers: [
+                            {text: "Riz, pois, viande", correct: false},
+                            {text: "Maïs, pois, viande", correct: true},
+                            {text: "Blé, pois, viande", correct: false},
+                            {text: "Banane, riz, maïs", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Comment s'appelle la base d'assaisonnement haïtienne faite de piments, ail, oignons et épices ?",
+                        answers: [
+                            {text: "Pikliz", correct: false},
+                            {text: "Sauce tomate", correct: false},
+                            {text: "Épis", correct: true},
+                            {text: "Ragou", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Avec quoi consomme-t-on généralement le lalo ?",
+                        answers: [
+                            {text: "Du riz blanc", correct: true},
+                            {text: "Du pian", correct: false},
+                            {text: "Du spaghetti", correct: false},
+                            { text: "Du banane", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel dessert haïtien est préparé avec du lait concentré et du sucre caramélisé?",
+                        answers: [
+                            { text: "Douce macoss", correct: true},
+                            { text: "Flan", correct : false},
+                            { text: "Pain patate", correct: false},
+                            { text: "Tablet Pichtach", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel plat haïtien est composé de porc frit assaisonné?",
+                        answers: [
+                            {text: "Soup Joumou" ,correct: false},
+                            { text: "Riz collé", correct: false}, 
+                            { text: "Lalo", correct: false}, 
+                            { text: "Griot", correct: true}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quel type de pain haïtien est traditionnellement consommé pendant les fêtes de Pâques?",
+                        answers: [
+                            { text: "Pain patate", correct: false },
+                            { text: "Pain mais", correct: false },
+                            { text: "Pain au beurre", correct: false },
+                            { text: "Pain chocolat", correct: false },
+                            { text: "Aucun des précédents", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Quel champignon noir utilisé pour donner une saveur unique au riz haïtien?",
+                        answers: [
+                            { text: "Champignon de Paris", correct: false},
+                            { text: "Djon-djon", correct: true},
+                            { text: "Shiitake", correct: false},
+                            { text: "Morille", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "La soupe joumou est un symbole de ....",
+                        answers: [
+                            {text: "La colonisation", correct: false},
+                            {text: "L'indépendance d'Haïti", correct: true},
+                            { text: "La religion", correct: false},
+                            {text: "Festival", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "La gastronomie haïtienne est un mélange de cultures....",
+                        answers: [
+                            {text: "Africaine, française et taïno", correct: true},
+                            {text: "Américaine uniquement", correct: false},
+                            {text: "Européenne uniqueent", correct: false},
+                            {text: "Française et Espagnol", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle région est particulièrement reconnue pour la production traditionnelle de clairin ?",
+                        answers: [
+                            {text: "Port-au-Prince", correct: false},
+                            {text: "Artibonite", correct: false},
+                            {text: "Grand'Anse", correct: true},
+                            {text: "Cap-Haïtien", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel dessert haïtien est fait à base de cacahuètes caramélisées?",
+                        answers: [
+                            { text: "Tablet pichtach", correct: true},
+                            { text: "Dous Macoss", correct: false},
+                            { text: "Pain patate", correct: false},
+                            { text: "Flan", correct: false}
+                        ]
+                    }
+                ]
+            },
+            sciences: {
+                normal: [
+                    {
+                        question: "Quel organe pompe le sang dans le corps humain?",
+                        answers: [
+                            { text: "Foie", correct: false },
+                            { text: "Poumons", correct: false },
+                            { text: "Reins", correct: false },
+                            { text: "Cœur", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Quel gaz les plantes produisent lors de la photosynthèse ?",
+                        answers: [
+                            { text: "Dioxyde de carbone", correct: false},
+                            { text: "Oxygène", correct: true},
+                            { text: "Azote", correct: false},
+                            { text: "Hydrogène"}
+                        ]
+                    },
+
+                    {
+                        question: "Quel est l'animal le plus rapide sur Terre ?",
+                        answers: [
+                            { text: "Lion", correct: false},
+                            { text: "Guépard", correct: true},
+                            { text: "Cheval", correct: false},
+                            { text: "Léopard", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle étoile éclaire la Terre ?",
+                        answers: [
+                            { text: "Sirius", correct: false},
+                            { text: "Soleil", correct: true},
+                            { text: "Lune", correct: false},
+                            { text: "Alpha Centauri", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la plus grande planète du système solaire?",
+                        answers: [
+                            { text: "Saturne", correct: false},
+                            { text: "Jupiter", correct: true},
+                            { text: "Neptune", correct: false},
+                            { text: "Uranus", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel gaz est essentiel à la respiration humaine?",
+                        answers: [
+                            { text: "Azote", correct: false},
+                            { text: "Dioxyde de carbone", correct: false},
+                            { text: "Oxygène", correct: true},
+                            { text: "Hydrogène", correct: false}
+                        ]
+                    }
+                ],
+                difficile: [
+                    {
+                        question: "Quelle est la vitesse de lumière dans le vide?",
+                        answers: [
+                            { text: "30 000 km/s", correct: false },
+                            { text: "150 0000 km/s", correct: false },
+                            { text: "3 000 km/s", correct: false },
+                            { text: "300 000 km/s", correct: true }
+                        ]
+                    },
+
+                    {
+                        question: "Quelle particule subatomique a une charge négative?",
+                        answers: [
+                            { text: "Proton", correct: false},
+                            { text: "Neutron", correct: false},
+                            { text: "Photon", correct: false},
+                            {text: "Electron", correct: true}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la couche de l'atmosphère où se trouve l'ozone ?",
+                        answers: [
+                            { text: "Stratosphère", correct: true},
+                            { text: "Troposphère", correct: false},
+                            { text: "Mésosphère", correct: false},
+                            { text: "Thermosphère", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel est le plus petit os du corps humain ?",
+                        answers: [
+                            { text: "Étrier", correct: true},
+                            { text: "Fémur", correct: false},
+                            { text: "Radius", correct: false},
+                            { text: "Tibia", correct: false}
+
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est le nombre de chromosomes chez l'être humain?",
+                        answers: [
+                            { text: "23", correct: false},
+                            { text: "46", correct: true},
+                            { text: "64", correct: false},
+                            { text: "32", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la planète qui possède des anneaux visibles ?",
+                        answers: [
+                            { text: "Saturne", correct: true},
+                            { text: "Jupiter", correct: false},
+                            { text: "Uranus", correct: false},
+                            { text: "Neptune", correct: false}
+                        ]
+                    }
+                ],
+                expert: [
+                    {
+                        question: "Quelle est la première femme à avoir remporté un prix Nobel?",
+                        answers: [
+                            { text: "Roselind Frankiln", correct: false },
+                            { text: "Lise Meitner", correct: false },
+                            { text: "Ada Lovelace", correct: false },
+                            { text: "Marie Curie", correct: true }
+                        ]
+                    },
+
+                    {
+                        question:  "Quelle est la molécule porteuse de l'information génétique?",
+                        answers: [
+                            { text: "ARN", correct: false },
+                            { text: "ADN", correct: true },
+                            { text: "Lipide", correct: false },
+                            { text: "Protide", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la théorie qui décrit le comportement des particules à l'échelle microscopique ?",
+                        answers: [
+                            { text: "Physique quantique", correct: true},
+                            { text: "Relativité générale", correct: false},
+                            { text: "Thermodynamique", correct: false},
+                            { text: "Mécanique classique", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la particule subatomique qui détermine l'identité chimique d'un élément ?",
+                        answers: [
+                            { text: "Proton", correct: true},
+                            { text: "Neutron", correct: false},
+                            { text: "Électron", correct: false},
+                            { text: "Photon", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quelle est la particule responsable de la force électromagnétique ?",
+                        answers: [
+                            { text: "Photon", correct: true},
+                            { text: "Proton", correct: false},
+                            { text: "Neutron", correct: false},
+                            { text: "Électron", correct: false}
+                        ]
+                    },
+
+                    {
+                        question: "Quel scientifique a formulé la théorie de la relativité?",
+                        answers: [
+                            { text: "Isaac Newton", correct: false},
+                            { text: "Albert EInstein", correct: true},
+                            { text: "Galilée", correct: false},
+                            { text: "Niels Bohr", correct: false}
+                        ]
+                    }
+                    
+                ],
+            }
+        };
+
+        
+        // Variables d'état du quiz
+        let currentScreen = 'home';
+        let currentCategory = 'mixte';
+        let currentDifficulty = 'normal';
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timerInterval;
+        let timeLeft = 90;
+        let selectedAnswers = [];
+        let quizStarted = false;
+       
+        // Messages d'encouragement
+        const encouragementMessages = [
+            "Bon travail! Continuez comme ça!",
+            "Excellent! Vous maîtrisez bien le sujet!",
+            "Vous êtes sur la bonne voie!",
+            "Ne lâchez rien, vous y êtes presque!",
+            "Impressionnant! Vos connaissances sont solides!",
+            "Continuez à vous concentrer, vous faites du bon travail!",
+            "Haïti serait fier de vos connaissances!",
+            "Vous êtes un véritable expert d'Haïti!",
+            "Magnifique! Votre persévérance paie!",
+            "Vous avez l'air de vraiment connaître Haïti!"
+        ];
+       
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Écouteurs d'événements pour les boutons
+            document.querySelector('.btn-start').addEventListener('click', startQuiz);
+           
+            // Écouteurs pour les catégories
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    selectCategory(category);
+                });
+            });
+           
+            // Écouteurs pour les niveaux de difficulté
+            document.querySelectorAll('.btn-difficulty').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.btn-difficulty').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentDifficulty = this.getAttribute('data-difficulty');
+                });
+            });
+           
+            // Écouteurs pour les boutons du quiz
+            document.getElementById('btn-next').addEventListener('click', nextQuestion);
+            document.getElementById('btn-prev').addEventListener('click', prevQuestion);
+            document.getElementById('btn-submit').addEventListener('click', submitQuiz);
+            document.getElementById('btn-restart').addEventListener('click', restartQuiz);
+            document.getElementById('btn-leaderboard').addEventListener('click', showLeaderboard);
+            document.getElementById('btn-home').addEventListener('click', showHome);
+            document.getElementById('btn-home2').addEventListener('click', showHome);
+            document.getElementById('btn-clear-scores').addEventListener('click', clearLeaderboard);
+            document.getElementById('btn-send').addEventListener('click', sendContactMessage);
+           
+            // Navigation
+            setupNavigation();
+           
+            // Initialiser le classement
+            initializeLeaderboard();
+        });
+       
+        // Navigation entre les écrans
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+           
+            // Fonction pour gérer le clic sur les liens
+            function handleNavClick(e) {
+                e.preventDefault();
+                const screen = this.getAttribute('data-screen');
+               
+                // Mettre à jour l'état actif de la navigation
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+               
+                // Afficher l'écran correspondant
+                showScreen(screen);
+               
+                // Fermer le menu mobile s'il est ouvert
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                }
+            }
+           
+            // Ajouter les écouteurs d'événements à chaque lien
+            navLinks.forEach(link => {
+                link.addEventListener('click', handleNavClick);
+            });
+           
+            // Menu mobile
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+           
+            // Lien "À propos" dans la page À propos
+            document.querySelector('a[data-screen="contact"]')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleNavClick.call(this, e);
+            });
+        }
+
+                // Afficher un écran spécifique
+        function showScreen(screenName) {
+            // Masquer tous les écrans
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+           
+            // Afficher l'écran demandé
+            const screenElement = document.getElementById(`${screenName}-screen`);
+            if (screenElement) {
+                screenElement.classList.add('active');
+            }
+           
+            // Mettre à jour l'état actif de la navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-screen') === screenName) {
+                    link.classList.add('active');
+                }
+            });
+           
+            // Mettre à jour l'écran courant
+            currentScreen = screenName;
+           
+            // Si on affiche le classement, le mettre à jour
+            if (screenName === 'leaderboard') {
+                updateLeaderboard();
+            }
+        }
+       
+        // Sélectionner une catégorie
+        function selectCategory(category) {
+            currentCategory = category;
+            startQuiz();
+        }
+       
+        // Démarrer le quiz
+        function startQuiz() {
+            // Récupérer les questions pour la catégorie et difficulté sélectionnées
+            currentQuestions = getQuestionsForQuiz();
+           
+            if (currentQuestions.length === 0) {
+                alert("Aucune question disponible pour cette catégorie et difficulté. Veuillez en sélectionner une autre.");
+                return;
+            }
+           
+            // Réinitialiser les variables du quiz
+            currentQuestionIndex = 0;
+            score = 0;
+            timeLeft = 90;
+            selectedAnswers = new Array(currentQuestions.length).fill(null);
+            quizStarted = true;
+           
+            // Mettre à jour l'interface
+            document.getElementById('current-category').textContent = `Catégorie: ${getCategoryDisplayName(currentCategory)}`;
+            document.getElementById('total-questions').textContent = currentQuestions.length;
+           
+            // Démarrer le timer
+            startTimer();
+           
+            // Afficher la première question
+            displayQuestion();
+           
+            // Afficher l'écran du quiz
+            showScreen('quiz');
+        }
+       
+        // Obtenir les questions pour le quiz actuel
+        function getQuestionsForQuiz() {
+            let questions = [];
+           
+            if (currentCategory === 'mixte') {
+                // Pour le quiz mixte, prendre 1-2 questions de chaque catégorie
+                const categories = ['histoire', 'geographie', 'musique', 'sport', 'art', 'gastronomie', 'sciences'];
+               
+                categories.forEach(cat => {
+                    if (quizData[cat] && quizData[cat][currentDifficulty]) {
+                        // Prendre 1 ou 2 questions aléatoires de chaque catégorie
+                        const catQuestions = [...quizData[cat][currentDifficulty]];
+                        const randomQuestions = getRandomElements(catQuestions, Math.min(2, catQuestions.length));
+                        questions.push(...randomQuestions);
+                    }
+                });
+               
+                // Mélanger les questions
+                questions = shuffleArray(questions);
+               
+                // Limiter à 10 questions maximum
+                if (questions.length > 10) {
+                    questions = questions.slice(0, 10);
+                }
+            } else {
+                // Pour une catégorie spécifique, prendre toutes les questions disponibles
+                if (quizData[currentCategory] && quizData[currentCategory][currentDifficulty]) {
+                    questions = [...quizData[currentCategory][currentDifficulty]];
+                }
+            }
+           
+            return questions;
+        }
+       
+        // Afficher la question actuelle
+        function displayQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) return;
+           
+            const question = currentQuestions[currentQuestionIndex];
+            const questionElement = document.getElementById('question-text');
+            const answersContainer = document.getElementById('answers-container');
+           
+            // Mettre à jour le texte de la question
+            questionElement.textContent = question.question;
+           
+            // Mettre à jour le compteur de questions
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+           
+            // Mettre à jour la barre de progression
+            const progressPercent = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+           
+            // Effacer les réponses précédentes
+            answersContainer.innerHTML = '';
+           
+            // Afficher les réponses
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+            question.answers.forEach((answer, index) => {
+                const answerElement = document.createElement('div');
+                answerElement.className = 'answer-option';
+               
+                // Si une réponse a déjà été sélectionnée pour cette question, l'afficher
+                if (selectedAnswers[currentQuestionIndex] === index) {
+                    answerElement.classList.add('selected');
+                }
+               
+                answerElement.innerHTML = `
+                    <div class="option-letter">${letters[index]}</div>
+                    <div class="option-text">${answer.text}</div>
+                `;
+               
+                answerElement.addEventListener('click', () => selectAnswer(index));
+               
+                answersContainer.appendChild(answerElement);
+            });
+           
+            // Mettre à jour l'état des boutons de navigation
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            document.getElementById('btn-next').disabled = currentQuestionIndex === currentQuestions.length - 1;
+           
+            // Afficher un message d'encouragement aléatoire toutes les 2 questions
+            if (currentQuestionIndex % 2 === 0) {
+                const randomIndex = Math.floor(Math.random() * encouragementMessages.length);
+                document.getElementById('encouragement-message').textContent = encouragementMessages[randomIndex];
+            }
+        }
+       
+        // Sélectionner une réponse
+        function selectAnswer(answerIndex) {
+            // Enregistrer la réponse sélectionnée
+            selectedAnswers[currentQuestionIndex] = answerIndex;
+           
+            // Mettre à jour l'affichage des réponses
+            const answerOptions = document.querySelectorAll('.answer-option');
+            answerOptions.forEach((option, index) => {
+                option.classList.remove('selected');
+                if (index === answerIndex) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        // Question suivante
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+       
+        // Question précédente
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+       
+        // Démarrer le timer
+        function startTimer() {
+            // Arrêter tout timer existant
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+           
+            // Mettre à jour l'affichage du timer
+            updateTimerDisplay();
+           
+            // Démarrer le nouveau timer
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+               
+                // Si le temps est écoulé, soumettre automatiquement le quiz
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+       
+        // Mettre à jour l'affichage du timer
+        function updateTimerDisplay() {
+            const timerElement = document.getElementById('timer');
+            timerElement.textContent = `${timeLeft}s`;
+           
+            // Changer la couleur selon le temps restant
+            if (timeLeft <= 10) {
+                timerElement.style.color = 'var(--danger)';
+                timerElement.style.borderColor = 'var(--danger)';
+            } else if (timeLeft <= 30) {
+                timerElement.style.color = 'var(--warning)';
+                timerElement.style.borderColor = 'var(--warning)';
+            } else {
+                timerElement.style.color = 'var(--secondary)';
+                timerElement.style.borderColor = '#eee';
+            }
+        }
+       
+        // Soumettre le quiz
+        function submitQuiz() {
+            // Arrêter le timer
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+           
+            // Calculer le score
+            calculateScore();
+           
+            // Afficher les résultats
+            showResults();
+           
+            // Enregistrer le score dans le classement
+            saveScoreToLeaderboard();
+        }
+       
+        // Calculer le score
+        function calculateScore() {
+            let correctCount = 0;
+           
+            // Vérifier chaque réponse
+            currentQuestions.forEach((question, index) => {
+                const selectedAnswerIndex = selectedAnswers[index];
+               
+                if (selectedAnswerIndex !== null && question.answers[selectedAnswerIndex].correct) {
+                    correctCount++;
+                }
+            });
+           
+            // Calculer le score sur 100
+            score = Math.round((correctCount / currentQuestions.length) * 100);
+        }
+       
+        // Afficher les résultats
+        function showResults() {
+            // Mettre à jour le score
+            document.getElementById('final-score').textContent = score;
+           
+            // Déterminer le message en fonction du score
+            let title, message;
+           
+            if (score >= 90) {
+                title = "Excellent travail!";
+                message = "Vous êtes un véritable expert d'Haïti! Vos connaissances sont impressionnantes.";
+            } else if (score >= 70) {
+                title = "Très bon!";
+                message = "Vous avez une très bonne connaissance d'Haïti. Continuez à apprendre!";
+            } else if (score >= 50) {
+                title = "Pas mal!";
+                message = "Vous avez des connaissances de base sur Haïti. Vous pouvez faire mieux!";
+            } else {
+                title = "Peut mieux faire";
+                message = "Ne vous découragez pas! Continuez à apprendre sur Haïti et réessayez.";
+            }
+           
+            document.getElementById('result-title').textContent = title;
+            document.getElementById('result-message').textContent = message;
+           
+            // Afficher les réponses incorrectes
+            const wrongAnswersList = document.getElementById('wrong-answers-list');
+            wrongAnswersList.innerHTML = '';
+           
+            currentQuestions.forEach((question, index) => {
+                const selectedAnswerIndex = selectedAnswers[index];
+               
+                // Si aucune réponse n'a été sélectionnée ou si elle est incorrecte
+                if (selectedAnswerIndex === null || !question.answers[selectedAnswerIndex].correct) {
+                    const wrongAnswerItem = document.createElement('li');
+                    wrongAnswerItem.className = 'wrong-answer-item';
+                   
+                    // Trouver la bonne réponse
+                    const correctAnswer = question.answers.find(answer => answer.correct);
+                   
+                    // Afficher la réponse sélectionnée (si elle existe)
+                    let selectedText = "Aucune réponse sélectionnée";
+                    if (selectedAnswerIndex !== null) {
+                        selectedText = question.answers[selectedAnswerIndex].text;
+                    }
+                   
+                    wrongAnswerItem.innerHTML = `
+                        <div class="wrong-question">${question.question}</div>
+                        <div>Votre réponse: ${selectedText}</div>
+                        <div class="correct-answer">Bonne réponse: ${correctAnswer.text}</div>
+                    `;
+                   
+                    wrongAnswersList.appendChild(wrongAnswerItem);
+                }
+            });
+           
+            // Si toutes les réponses sont correctes
+            if (wrongAnswersList.children.length === 0) {
+                const allCorrectItem = document.createElement('li');
+                allCorrectItem.className = 'wrong-answer-item';
+                allCorrectItem.style.borderLeftColor = 'var(--success)';
+                allCorrectItem.innerHTML = `
+                    <div class="wrong-question">Félicitations!</div>
+                    <div>Vous avez répondu correctement à toutes les questions!</div>
+                `;
+                wrongAnswersList.appendChild(allCorrectItem);
+            }
+           
+            // Afficher l'écran des résultats
+            showScreen('results');
+        }
+       
+        // Redémarrer le quiz
+        function restartQuiz() {
+            startQuiz();
+        }
+       
+        // Afficher le classement
+        function showLeaderboard() {
+            showScreen('leaderboard');
+        }
+       
+        // Afficher l'accueil
+        function showHome() {
+            showScreen('home');
+        }
+       
+        // Obtenir le nom d'affichage d'une catégorie
+        function getCategoryDisplayName(category) {
+            const names = {
+                'histoire': 'Histoire',
+                'geographie': 'Géographie',
+                'musique': 'Musique',
+                'sport': 'Sport',
+                'art': 'Art',
+                'gastronomie': 'Gastronomie',
+                'sciences': 'Sciences',
+                'mixte': 'Mixte'
+            };
+           
+            return names[category] || category;
+        }
+       
+        // Initialiser le classement
+        function initializeLeaderboard() {
+            if (!localStorage.getItem('quizAyitiLeaderboard')) {
+                // Données par défaut pour le classement
+                const defaultScores = [
+                    { name: "Papouloute", score: 100, category: "Histoire", date: "2025-12-28" },
+                    { name: "Jean", score: 88, category: "Mixte", date: "2025-12-28" },
+                    { name: "Sophie", score: 82, category: "Géographie", date: "2025-12-28" },
+                    { name: "Pierre", score: 78, category: "Musique", date: "2025-12-28" },
+                    { name: "Claude", score: 75, category: "Art", date: "2025-12-27" },
+                    { name: "Isabelle", score: 70, category: "Gastronomie", date: "2025-12-27" },
+                    { name: "Marc", score: 65, category: "Sport", date: "2025-12-28" },
+                    { name: "Nadia", score: 60, category: "Sciences", date: "2025-12-28" },
+                    { name: "Luc", score: 55, category: "Mixte", date: "2025-12-27" },
+                    { name: "Eva", score: 50, category: "Histoire", date: "2025-12-28" }
+                ];
+
+
+
+                localStorage.setItem('quizAyitiLeaderboard', JSON.stringify(defaultScores));
+            }
+        }
+       
+        // Mettre à jour le classement
+        function updateLeaderboard() {
+            const leaderboardBody = document.getElementById('leaderboard-body');
+            leaderboardBody.innerHTML = '';
+           
+            const scores = JSON.parse(localStorage.getItem('quizAyitiLeaderboard')) || [];
+           
+            // Trier les scores du plus haut au plus bas
+            scores.sort((a, b) => b.score - a.score);
+           
+            // Afficher les 10 premiers scores
+            const topScores = scores.slice(0, 10);
+           
+            topScores.forEach((scoreData, index) => {
+                const row = document.createElement('tr');
+               
+                // Déterminer la couleur de l'icône de rang
+                let rankIcon = '';
+                if (index === 0) {
+                    rankIcon = '<i class="fas fa-crown" style="color: #FFD700;"></i>';
+                } else if (index === 1) {
+                    rankIcon = '<i class="fas fa-crown" style="color: #C0C0C0;"></i>';
+                } else if (index === 2) {
+                    rankIcon = '<i class="fas fa-crown" style="color: #CD7F32;"></i>';
+                }
+               
+                row.innerHTML = `
+                    <td class="rank">${rankIcon} ${index + 1}</td>
+                    <td class="player-name">${scoreData.name}</td>
+                    <td class="player-score">${scoreData.score}/100</td>
+                    <td>${getCategoryDisplayName(scoreData.category)}</td>
+                    <td>${scoreData.date}</td>
+                `;
+               
+                leaderboardBody.appendChild(row);
+            });
+        }
+       
+        // Enregistrer le score dans le classement
+        function saveScoreToLeaderboard() {
+            // Demander le nom du joueur
+            const playerName = prompt("Félicitations! Entrez votre nom pour enregistrer votre score dans le classement:", "Joueur");
+           
+            if (playerName) {
+                const scores = JSON.parse(localStorage.getItem('quizAyitiLeaderboard')) || [];
+               
+                // Ajouter le nouveau score
+                const today = new Date().toISOString().split('T')[0];
+                scores.push({
+                    name: playerName,
+                    score: score,
+                    category: currentCategory,
+                    date: today
+                });
+               
+                // Sauvegarder dans localStorage
+                localStorage.setItem('quizAyitiLeaderboard', JSON.stringify(scores));
+               
+                // Mettre à jour l'affichage du classement
+                updateLeaderboard();
+            }
+        }
+       
+        // Effacer le classement
+        function clearLeaderboard() {
+            if (confirm("Êtes-vous sûr de vouloir effacer tous les scores du classement?")) {
+                localStorage.removeItem('quizAyitiLeaderboard');
+                initializeLeaderboard();
+                updateLeaderboard();
+            }
+        }
+       
+        // Envoyer un message de contact
+        function sendContactMessage() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+           
+            if (!name || !email || !subject || !message) {
+                alert("Veuillez remplir tous les champs du formulaire.");
+                return;
+            }
+           
+            // Ici, normalement, on enverrait le message à un serveur
+            // Pour cette démo, on simule juste l'envoi
+            alert(`Merci ${name}! Votre message a été envoyé avec succès. Nous vous répondrons à ${email} dès que possible.`);
+           
+            // Réinitialiser le formulaire
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('message').value = '';
+        }
+       
+        // Fonctions utilitaires
+        function getRandomElements(array, n) {
+            const shuffled = [...array].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, n);
+        }
+       
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+    </script>
+</body>
+</html>
